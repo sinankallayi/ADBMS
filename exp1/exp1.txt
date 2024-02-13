@@ -1,0 +1,122 @@
+//Experiment 1
+
+a)//table employee
+
+create database exp1;
+use exp1;
+create table employee(emp_id int,name varchar(25),city varchar(25),dob date,adhar_no bigint);
+desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(25) | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| adhar_no | bigint      | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+b)//table student
+
+create table student(roll_no int primary key,name varchar(25) not null,age int check(age>0 and age<99) not null,address varchar(30),gender varchar(10)default 'm');
+desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    |       |
+| name    | varchar(25) | NO   |     | NULL    |       |
+| age     | int         | NO   |     | NULL    |       |
+| address | varchar(30) | YES  |     | NULL    |       |
+| gender  | varchar(10) | YES  |     | m       |       |
++---------+-------------+------+-----+---------+-------+
+
+
+c)//temporary table student1
+
+create temporary table student1(roll_no int primary key,name varchar(25)not null,age int check(age>0 and age<99) not null,address varchar(30),gender varchar(10)default 'm');
+ desc student1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    | NULL  |
+| name    | varchar(25) | NO   |     | NULL    | NULL  |
+| age     | int         | NO   |     | NULL    | NULL  |
+| address | varchar(30) | YES  |     | NULL    | NULL  |
+| gender  | varchar(10) | YES  |     | m       | NULL  |
++---------+-------------+------+-----+---------+-------+
+
+
+d)//duplicate table employee1
+
+create table employee1 like employee;
+desc employee1;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(25) | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| adhar_no | bigint      | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+e)//create database invoice
+
+create database invoice;
+use invoice;
+
+//table customer
+
+create table customer(id int primary key,name varchar(25),address varchar(30),city varchar(25),ph_no bigint);
+desc customer;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| name    | varchar(25) | YES  |     | NULL    |       |
+| address | varchar(30) | YES  |     | NULL    |       |
+| city    | varchar(25) | YES  |     | NULL    |       |
+| ph_no   | bigint      | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+
+//table product
+
+create table product(pid int primary key,pname varchar(25),price int default '0');
+desc product;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| pid   | int         | NO   | PRI | NULL    |       |
+| pname | varchar(25) | YES  |     | NULL    |       |
+| price | int         | YES  |     | 0       |       |
++-------+-------------+------+-----+---------+-------+
+
+
+//table invoice_master
+
+create table invoice_master(inv_id int primary key,cust_id int,inv_date date,foreign key(cust_id)references customer(id));
+desc invoice_master;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| inv_id   | int  | NO   | PRI | NULL    |       |
+| cust_id  | int  | YES  | MUL | NULL    |       |
+| inv_date | date | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+
+
+//table invoice_item
+
+create table invoice_item(inv_id int,pid int,quantity int,foreign key(inv_id)references invoice_master(inv_id),foreign key(pid)references product(pid));
+desc invoice_item;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| inv_id   | int  | YES  | MUL | NULL    |       |
+| pid      | int  | YES  | MUL | NULL    |       |
+| quantity | int  | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+
