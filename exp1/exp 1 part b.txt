@@ -1,0 +1,83 @@
+//Experiment 1 part b
+
+alter table employee add ssn int first;
+desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ssn      | int         | YES  |     | NULL    |       |
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(25) | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| adhar_no | bigint      | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+alter table employee modify dob year;
+desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ssn      | int         | YES  |     | NULL    |       |
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(25) | YES  |     | NULL    |       |
+| dob      | year        | YES  |     | NULL    |       |
+| adhar_no | bigint      | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+alter table employee drop column emp_id;
+desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ssn      | int         | YES  |     | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(25) | YES  |     | NULL    |       |
+| dob      | year        | YES  |     | NULL    |       |
+| adhar_no | bigint      | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+alter table employee modify ssn int unique;
+alter table employee modify adhar_no bigint unique;
+desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ssn      | int         | YES  | UNI | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(25) | YES  |     | NULL    |       |
+| dob      | year        | YES  |     | NULL    |       |
+| adhar_no | bigint      | YES  | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+alter table student modify age int null;
+desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    |       |
+| name    | varchar(25) | NO   |     | NULL    |       |
+| age     | int         | YES  |     | NULL    |       |
+| address | varchar(30) | YES  |     | NULL    |       |
+| gender  | varchar(10) | YES  |     | m       |       |
++---------+-------------+------+-----+---------+-------+
+
+
+alter table employee rename person;
+show tables;
++----------------+
+| Tables_in_exp1 |
++----------------+
+| employee1      |
+| person         |
+| student        |
++----------------+
+
+
+drop table student1;
+
