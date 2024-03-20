@@ -1,0 +1,154 @@
+1.4 ACCESSING DATABASE
+-----------------------
+
+1)
+
+mysql> select * from customer;
++-------+--------+-----------+------+------------+
+| id    | name   | address   | city | ph_no      |
++-------+--------+-----------+------+------------+
+| 10002 | sumesh | def house | ekm  | 9632589652 |
+| 10005 | rajesh | mno house | wyn  | 9712346895 |
++-------+--------+-----------+------+------------+
+2 rows in set (0.00 sec)
+
+
+2)
+
+mysql> select pname,price from product;
++--------+-------+
+| pname  | price |
++--------+-------+
+| pencil |    51 |
+| pen    |    71 |
+| book   |   224 |
+| soap   |   153 |
+| Bucket |    31 |
++--------+-------+
+5 rows in set (0.00 sec)
+
+
+3)
+
+mysql> select pid from invoice_item;
++------+
+| pid  |
++------+
+| 3333 |
+| 4444 |
+| 4444 |
+| 5555 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct pid from invoice_item;
++------+
+| pid  |
++------+
+| 3333 |
+| 4444 |
+| 5555 |
++------+
+3 rows in set (0.00 sec)
+
+
+4)
+
+mysql> select * from product;
++------+--------+-------+
+| pid  | pname  | price |
++------+--------+-------+
+| 1111 | pencil |    51 |
+| 2222 | pen    |    71 |
+| 3333 | book   |   224 |
+| 4444 | soap   |   153 |
+| 5555 | Bucket |    31 |
++------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from product where price between 50 and 150;
++------+--------+-------+
+| pid  | pname  | price |
++------+--------+-------+
+| 1111 | pencil |    51 |
+| 2222 | pen    |    71 |
++------+--------+-------+
+2 rows in set (0.00 sec)
+
+
+5)
+
+
+mysql> select * from customer;
++-------+---------+------------+------+------------+
+| id    | name    | address    | city | ph_no      |
++-------+---------+------------+------+------------+
+| 10002 | sumesh  | def house  | ekm  | 9632589652 |
+| 10005 | rajesh  | mno house  | wyn  | 9712346895 |
+| 10006 | radhesh | xyz house  | tvm  | 9656666685 |
+| 10007 | kalyani | cute house | ekm  | 9876543210 |
++-------+---------+------------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer where city in("ekm","tvm");
++-------+---------+------------+------+------------+
+| id    | name    | address    | city | ph_no      |
++-------+---------+------------+------+------------+
+| 10002 | sumesh  | def house  | ekm  | 9632589652 |
+| 10006 | radhesh | xyz house  | tvm  | 9656666685 |
+| 10007 | kalyani | cute house | ekm  | 9876543210 |
++-------+---------+------------+------+------------+
+3 rows in set (0.00 sec)
+
+
+6)
+
+
+mysql> select * from invoice_master;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    101 |   10001 | 2021-02-11 |
+|    102 |   10002 | 2021-04-23 |
+|    103 |   10003 | 2022-09-01 |
+|    105 |   10005 | 2023-11-30 |
+|    106 |   10003 | 2023-05-12 |
++--------+---------+------------+
+5 rows in set (0.00 sec)
+
+
+mysql> select * from invoice_master where inv_date between 20210101 and 20210331;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    101 |   10001 | 2021-02-11 |
++--------+---------+------------+
+1 row in set (0.00 sec)
+
+
+7)
+
+
+mysql> select * from customer;
++-------+---------+------------+------+------------+
+| id    | name    | address    | city | ph_no      |
++-------+---------+------------+------+------------+
+| 10002 | sumesh  | def house  | ekm  | 9632589652 |
+| 10005 | rajesh  | mno house  | wyn  | 9712346895 |
+| 10006 | radhesh | xyz house  | tvm  | 9656666685 |
+| 10007 | kalyani | cute house | ekm  | 9876543210 |
++-------+---------+------------+------+------------+
+4 rows in set (0.00 sec)
+
+
+mysql> select * from customer where city not in("tvm");
++-------+---------+------------+------+------------+
+| id    | name    | address    | city | ph_no      |
++-------+---------+------------+------+------------+
+| 10002 | sumesh  | def house  | ekm  | 9632589652 |
+| 10005 | rajesh  | mno house  | wyn  | 9712346895 |
+| 10007 | kalyani | cute house | ekm  | 9876543210 |
++-------+---------+------------+------+------------+
+3 rows in set (0.00 sec)
+
+
