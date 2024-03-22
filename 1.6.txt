@@ -1,0 +1,96 @@
+1.6 OPTIMIZING DATABASE
+--------------------------
+
+1)
+
+mysql> select * from product;
++------+--------+-------+
+| pid  | pname  | price |
++------+--------+-------+
+| 1111 | pencil |    51 |
+| 2222 | pen    |    71 |
+| 3333 | book   |   224 |
+| 4444 | soap   |   153 |
+| 5555 | Bucket |    31 |
++------+--------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> select pname,price from product where pname!="soap" order by price;
++--------+-------+
+| pname  | price |
++--------+-------+
+| Bucket |    31 |
+| pencil |    51 |
+| pen    |    71 |
+| book   |   224 |
++--------+-------+
+4 rows in set (0.00 sec)
+
+
+2)
+
+
+mysql> select min(price),max(price),avg(price) from product;
++------------+------------+------------+
+| min(price) | max(price) | avg(price) |
++------------+------------+------------+
+|         31 |        224 |   106.0000 |
++------------+------------+------------+
+1 row in set (0.01 sec)
+
+
+
+3)
+
+mysql> select * from customer;
++-------+---------+------------+------+------------+
+| id    | name    | address    | city | ph_no      |
++-------+---------+------------+------+------------+
+| 10002 | sumesh  | def house  | ekm  | 9632589652 |
+| 10005 | rajesh  | mno house  | wyn  | 9712346895 |
+| 10006 | radhesh | xyz house  | tvm  | 9656666685 |
+| 10007 | kalyani | cute house | ekm  | 9876543210 |
++-------+---------+------------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select city,count(*) from customer group by city;
++------+----------+
+| city | count(*) |
++------+----------+
+| ekm  |        2 |
+| wyn  |        1 |
+| tvm  |        1 |
++------+----------+
+3 rows in set (0.00 sec)
+
+
+
+4)
+
+
+mysql> select * from customer;
++-------+---------+------------+------+------------+
+| id    | name    | address    | city | ph_no      |
++-------+---------+------------+------+------------+
+| 10002 | sumesh  | def house  | ekm  | 9632589652 |
+| 10005 | rajesh  | mno house  | wyn  | 9712346895 |
+| 10006 | radhesh | xyz house  | tvm  | 9656666685 |
+| 10007 | kalyani | cute house | ekm  | 9876543210 |
+| 10008 | sitha   | baby house | ekm  | 9696363610 |
+| 10009 | ayisha  | na house   | wyn  | 9301234567 |
++-------+---------+------------+------+------------+
+6 rows in set (0.00 sec)
+
+
+mysql> select count(*),city from customer group by city having count(city)>2;
++----------+------+
+| count(*) | city |
++----------+------+
+|        3 | ekm  |
++----------+------+
+1 row in set (0.00 sec)
+
+
+
+
