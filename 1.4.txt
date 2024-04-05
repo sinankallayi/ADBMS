@@ -151,4 +151,4 @@ mysql> select * from customer where city not in("tvm");
 +-------+---------+------------+------+------------+
 3 rows in set (0.00 sec)
 
-
+//VERIFIED
