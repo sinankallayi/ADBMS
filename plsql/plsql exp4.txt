@@ -1,0 +1,105 @@
+NoSQL – RETRIEVING DATA
+
+
+
+1.Write a MongoDB query to display the customer documents having city ‘ekm’,’tvm’. 
+
+
+invoice> db.customer.find({$or:[{"city":"ekm"},{"city":"tvm"}]})
+[
+  {
+    _id: ObjectId('66138cc7af92cc6c12ef6351'),
+    id: 10007,
+    name: 'ninku',
+    age: 29,
+    salary: 25000,
+    city: 'ekm'
+  },
+  {
+    _id: ObjectId('66138dddaf92cc6c12ef6352'),
+    id: 10008,
+    name: 'linku',
+    age: 55,
+    city: 'ekm'
+  },
+  {
+    _id: ObjectId('66138dddaf92cc6c12ef6353'),
+    id: 10009,
+    name: 'zinku',
+    age: 18,
+    salary: 15000,
+    city: 'tvm'
+  }
+]
+
+
+
+2.Write a MongoDB query to display all customer documents who have age >50.
+
+
+invoice> db.customer.find({"age":{$gt:50}}).pretty()
+[
+  {
+    _id: ObjectId('66138dddaf92cc6c12ef6352'),
+    id: 10008,
+    name: 'linku',
+    age: 55,
+    city: 'ekm'
+  }
+]
+
+
+
+3.Write a MongoDB query to find customer documents who not live in ‘tvm’.
+
+
+invoice> db.customer.find({"city":{$ne:"tvm"}}).pretty()
+[
+  {
+    _id: ObjectId('661387eaaf92cc6c12ef634b'),
+    id: '10001',
+    name: 'tinku'
+  },
+  {
+    _id: ObjectId('66138a6eaf92cc6c12ef634c'),
+    id: 10002,
+    name: 'minku',
+    age: 24
+  },
+  {
+    _id: ObjectId('66138a6eaf92cc6c12ef634d'),
+    id: 10003,
+    name: 'pinku',
+    age: 21,
+    salary: 35000
+  },
+  {
+    _id: ObjectId('66138b8daf92cc6c12ef634e'),
+    id: 10004,
+    name: 'binku',
+    age: 22
+  },
+  {
+    _id: ObjectId('66138b8daf92cc6c12ef634f'),
+    id: 10005,
+    name: 'jinku',
+    age: 28,
+    salary: 30000
+  },
+  {
+    _id: ObjectId('66138cc7af92cc6c12ef6351'),
+    id: 10007,
+    name: 'ninku',
+    age: 29,
+    salary: 25000,
+    city: 'ekm'
+  },
+  {
+    _id: ObjectId('66138dddaf92cc6c12ef6352'),
+    id: 10008,
+    name: 'linku',
+    age: 55,
+    city: 'ekm'
+  }
+]
+
