@@ -1,0 +1,80 @@
+
+1.Write a MongoDB query to create a user “CUSTOMER1” and grant the read role in the INVOICE database. 
+
+
+invoice> db.createUser({user:"customer1",pwd:"1234",roles:[{role:"read",db:"invoice"}]})
+{ ok: 1 }
+
+
+2.Write a MongoDB query to create the backup for the INVOICE database
+
+
+
+test> use demmy
+switched to db demmy
+demmy> show databases
+admin     132.00 KiB
+config    108.00 KiB
+employee   24.00 KiB
+invoice    80.00 KiB
+local      72.00 KiB
+test        8.00 KiB
+demmy> db.createCollection("cus")
+{ ok: 1 }
+demmy> show databases
+admin     132.00 KiB
+config     72.00 KiB
+demmy       8.00 KiB
+employee   24.00 KiB
+invoice    80.00 KiB
+local      72.00 KiB
+test        8.00 KiB
+demmy> 
+
+(base) ksb@ksb-H410M-H-V2:~$ mongodump --db demmy
+
+
+test> use demmy
+switched to db demmy
+demmy> show databases
+admin     132.00 KiB
+config     72.00 KiB
+demmy       8.00 KiB
+employee   24.00 KiB
+invoice    80.00 KiB
+local      72.00 KiB
+test        8.00 KiB
+demmy> db.dropDatabase()
+{ ok: 1, dropped: 'demmy' }
+demmy> show databases
+admin     132.00 KiB
+config     72.00 KiB
+employee   24.00 KiB
+invoice    80.00 KiB
+local      72.00 KiB
+test        8.00 KiB
+demmy> 
+
+
+
+3.Write a MongoDB query to restore a particular database or a collection.
+
+
+
+(base) ksb@ksb-H410M-H-V2:~$ mongorestore --db demmy dump/demmy
+
+2024-04-17T14:21:16.825+0530	0 document(s) restored successfully. 0 document(s) failed to restore.
+(base) ksb@ksb-H410M-H-V2:~$ mongosh
+
+
+test> show databases
+admin     132.00 KiB
+config     72.00 KiB
+demmy       8.00 KiB
+employee   24.00 KiB
+invoice    80.00 KiB
+local      72.00 KiB
+test        8.00 KiB
+test> 
+
+
